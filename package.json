@@ -1,0 +1,23 @@
+{
+  "name": "desktop-cat",
+  "version": "0.0.1",
+  "description": "3D desktop pet cat - stage 0 tech spike",
+  "main": "src/main.js",
+  "private": true,
+  "scripts": {
+    "build": "esbuild --bundle --format=iife --target=chrome120 --loader:.glb=binary src/renderer/boot.ts --outfile=dist/renderer.js && esbuild --bundle --format=iife --target=chrome120 --loader:.glb=binary src/studio/boot.ts --outfile=dist/studio.js && esbuild --bundle --format=iife --target=chrome120 --loader:.glb=binary src/tree/boot.ts --outfile=dist/tree.js",
+    "typecheck": "tsc --noEmit",
+    "start": "npm run build && env -u ELECTRON_RUN_AS_NODE electron .",
+    "studio": "npm run build && env -u ELECTRON_RUN_AS_NODE electron . --studio",
+    "sculpt": "/Applications/Blender.app/Contents/MacOS/Blender --background --python tools/sculpt_cat.py"
+  },
+  "dependencies": {
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.187.0",
+    "electron": "^45.3.1",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}
